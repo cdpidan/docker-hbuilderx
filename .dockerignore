@@ -29,7 +29,10 @@ tmp/
 # and DO NOT add `hbuilderx/` to this file. If you prefer forcing remote download,
 # you can add `hbuilderx/` here to exclude local tarballs from the build context.
 
-# By default ignore everything to keep build context small, but allow hbuilderx/ when present.
+# By default ignore everything to keep build context small, but allow plugin bundles
+# and hbuilderx/ when present.
 *
 !hbuilderx/
 !hbuilderx/**
+!plugins/
+!plugins/**

@@ -6,6 +6,10 @@ HBuilderX docker image form uapp and common uniapp development
 docker build -t docker-hbuilderx .
 ```
 
+Place HBuilderX plugin bundles in `plugins/*.tar.gz`. The Docker build will copy
+that directory and extract each plugin archive into the HBuilderX `plugins/`
+directory automatically.
+
 ## test
 
 ```sh

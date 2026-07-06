@@ -1,14 +1,20 @@
 FROM ubuntu:24.04 AS hbuilderx-extract
 
-ARG HBUILDER_X_VERSION=5.07.2026041006
+ARG HBUILDER_X_VERSION=5.14.2026070214
 
+COPY plugins/ /tmp/plugins/
 COPY hbuilderx/HBuilderX.${HBUILDER_X_VERSION}.linux_x64.full.tar.gz /tmp/hbuilderx.tar.gz
 
 RUN set -eux; \
     mkdir -p /tmp/hbuilderx; \
     tar -xzf /tmp/hbuilderx.tar.gz -C /tmp/hbuilderx; \
     mv /tmp/hbuilderx/HBuilderX /tmp/hbuilderx/hbuilderx-linux; \
-    rm -f /tmp/hbuilderx.tar.gz
+    for plugin in /tmp/plugins/*.tar.gz; do \
+        [ -e "$plugin" ] || continue; \
+        tar -xzf "$plugin" -C /tmp/hbuilderx/hbuilderx-linux/plugins/; \
+    done; \
+    rm -f /tmp/hbuilderx.tar.gz; \
+    rm -rf /tmp/plugins
 
 
 FROM ubuntu:24.04
@@ -72,4 +78,3 @@ RUN npm install -g uapp && \
     uapp config hbx.dir /usr/local/hbuilderx-linux
 
 CMD ["bash"]
-    
