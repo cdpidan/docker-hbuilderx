@@ -1,1 +1,1 @@
-docker buildx build --build-arg HBUILDER_X_VERSION=5.24.2026081301 -t hbuilderx:5.24.2026081301 .
+docker buildx build --build-arg HBUILDER_X_VERSION=5.26.2026091802 -t hbuilderx:5.26.2026091802 .
