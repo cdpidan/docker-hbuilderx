@@ -1,6 +1,6 @@
 FROM ubuntu:24.04 AS hbuilderx-extract
 
-ARG HBUILDER_X_VERSION=5.26.2026091802
+ARG HBUILDER_X_VERSION=5.33.2026102401
 
 COPY plugins/ /tmp/plugins/
 COPY hbuilderx/HBuilderX.${HBUILDER_X_VERSION}.linux_x64.full.tar.gz /tmp/hbuilderx.tar.gz
@@ -64,7 +64,8 @@ COPY --from=hbuilderx-extract /tmp/hbuilderx/hbuilderx-linux /usr/local/hbuilder
 # 将 NVM_DIR 放到全局目录，构建与运行均使用 root（更快，适合测试阶段）
 ENV NVM_DIR=/usr/local/nvm \
     NODE_PATH=/usr/local/nvm/versions/node/v$NODE_VERSION/lib/node_modules \
-    PATH=/usr/local/hbuilderx-linux:/usr/local/nvm/versions/node/v$NODE_VERSION/bin:$PATH
+    PATH=/usr/local/hbuilderx-linux:/usr/local/nvm/versions/node/v$NODE_VERSION/bin:$PATH \
+    COREPACK_NPM_REGISTRY=https://registry.npmmirror.com
 
 # 保持工作目录为 /opt，构建与运行都用 root
 WORKDIR /opt
