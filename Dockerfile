@@ -1,6 +1,6 @@
 FROM ubuntu:24.04 AS hbuilderx-extract
 
-ARG HBUILDER_X_VERSION=5.33.2026102401
+ARG HBUILDER_X_VERSION=5.34.2026102909
 
 COPY plugins/ /tmp/plugins/
 COPY hbuilderx/HBuilderX.${HBUILDER_X_VERSION}.linux_x64.full.tar.gz /tmp/hbuilderx.tar.gz
